@@ -9,7 +9,6 @@ from backend.router import routers
 
 load_dotenv()
 
-
 class mainApp(Flask):
     def __init__(self, *args, **options):
         super().__init__(__name__, static_folder="./frontend/static",
@@ -28,8 +27,9 @@ app = mainApp()
 
 @app.route("/")
 def index():
-    return render_template("home/index.html")
+    # random get 6*8 photos using api
+    return render_template("home/index.html", title="Hello World !")
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=os.getenv("port") or 80)
+    app.run( debug=True, port=os.getenv( "port" ) or 80 )
