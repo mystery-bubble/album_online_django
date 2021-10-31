@@ -1,22 +1,34 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template, request
+from flask import Flask
 from dotenv import load_dotenv
 import os
 
+from flask.templating import render_template
+from backend.router import routers
+
 load_dotenv()
 
-app = Flask(__name__)
+
+class mainApp(Flask):
+    def __init__(self, *args, **options):
+        super().__init__(__name__, static_folder="./frontend/static",
+                         template_folder="./frontend/templates", *args, **options)
+
+        # 移除 {% if %}空白
+        self.jinja_env.trim_blocks = True
+        self.jinja_env.lstrip_blocks = True
+
+        # 添加 blueprint
+        self.register_blueprint(routers, url_prefix="/api")
+
+
+app = mainApp()
 
 
 @app.route("/")
-def test():
-    return render_template("")
-
-
-@app.route("/api")
-def api():
-    return
+def index():
+    return render_template("home/index.html")
 
 
 if __name__ == "__main__":
