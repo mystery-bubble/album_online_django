@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="list-container">
-  {% for n in range(6)%}
-    <img src="">
+  {% for img in imgLinks %}
+  <img src="{{ img.url }}" alt="{{ img.alt }}">
   {% endfor %}
 </div>
 {% endblock %}

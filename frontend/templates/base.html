@@ -2,14 +2,14 @@
 <html lang="zh-tw">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}" />
 
-  <script src="{{ url_for('static', filename='js/jquerry.main.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/jquerry.main.js')}}" type="module"></script>
 
   <title>{{ title or "" }}</title>
 </head>
@@ -20,18 +20,17 @@
       <div class="container">
         <div class="header">
           <div class="left">
-            <img src="{{ url_for('static', filename='assets/image/header_title.png') }}">
+            <img src="{{ url_for('static', filename='assets/image/header_title.png') }}" />
             <span style="top: 50px">ONLINE</span>
           </div>
           <div class="right"></div>
         </div>
-        <hr style="border-color: #7D7C7A; margin-left: 1.5rem; margin-right: 1.5rem;">
+        <hr style="border-color: #7d7c7a;margin: 0 1.5rem;" />
         {% block content %}{% endblock %}
       </div>
     </div>
     <div class="footer"></div>
   </div>
-
 </body>
 
 </html>

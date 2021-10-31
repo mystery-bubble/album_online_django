@@ -9,6 +9,7 @@ from backend.router import routers
 
 load_dotenv()
 
+
 class mainApp(Flask):
     def __init__(self, *args, **options):
         super().__init__(__name__, static_folder="./frontend/static",
@@ -19,7 +20,22 @@ class mainApp(Flask):
         self.jinja_env.lstrip_blocks = True
 
         # 添加 blueprint
-        self.register_blueprint(routers, url_prefix="/api")
+        self.register_blueprint(routers)
+
+        # errors
+        @self.errorhandler(400)
+        def error_400(error):
+            return render_template("errors/400.html")
+
+        @self.errorhandler(404)
+        def error_404(error):
+            """404錯誤處理"""
+            return render_template("errors/404.html")
+
+        @self.errorhandler(500)
+        def error_500(error):
+            """500錯誤處理"""
+            return render_template("errors/500.html")
 
 
 app = mainApp()
@@ -28,8 +44,12 @@ app = mainApp()
 @app.route("/")
 def index():
     # random get 6*8 photos using api
-    return render_template("home/index.html", title="Hello World !")
+    return render_template("home/index.html", title="Hello World !", imgLinks=[{
+        "user": "",
+        "alt": "",
+        "uptime": "",
+    }])
 
 
 if __name__ == "__main__":
-    app.run( debug=True, port=os.getenv( "port" ) or 80 )
+    app.run(debug=True, port=os.getenv("port") or 80)
