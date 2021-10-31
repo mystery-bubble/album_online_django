@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, render_template, request
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
 
 app = Flask(__name__)
 
