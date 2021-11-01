@@ -4,8 +4,6 @@ from flask import Flask
 from dotenv import load_dotenv
 import os
 from flask.templating import render_template
-from werkzeug.utils import secure_filename
-import psycopg2
 
 from backend.db import db
 from backend.router import routers
@@ -18,7 +16,7 @@ class mainApp(Flask):
         super().__init__(__name__, static_folder="./frontend/static",
                          template_folder="./frontend/templates",
                          *args, **options)
-        self.db = db()
+        # self.db = db()
 
         # configs
         self.config["ALLOWED_EXTENSIONS"] = ["jpeg", "gif", "jpg", "png",
