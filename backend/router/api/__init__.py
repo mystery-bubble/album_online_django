@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, request, session, redirect, url_for, abort
+from flask import Blueprint
 
 api_tem = Blueprint("api", __name__, )
 
 
 @api_tem.route("/")
 def index():
-    return "awa"
+    return "喵這是API"

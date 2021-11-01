@@ -17,19 +17,17 @@ body {
 /* Main Container */
 #main {
     height: 100vh;
-}
-
-#main > .content {
-    display: flex;
-    justify-content: center;
-    height: 85%;
-    background-color: #1a1a1ad5;
-}
-
-#main > .content > .container {
-    height: 100%;
-    width: 85%;
-    background-color: #9f9e9c;
+    > .content {
+        display: flex;
+        justify-content: center;
+        height: 85%;
+        background-color: #1a1a1ad5;
+        > .container {
+            height: 100%;
+            width: 85%;
+            background-color: #9f9e9c;
+        }
+    }
 }
 
 /* header && footer */
@@ -57,6 +55,6 @@ body {
     padding-right: 1.5rem;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
-    img {
-    }
+    // img {
+    // }
 }

@@ -3,8 +3,11 @@
 from flask import Flask
 from dotenv import load_dotenv
 import os
-
 from flask.templating import render_template
+from werkzeug.utils import secure_filename
+import psycopg2
+
+from backend.db import db
 from backend.router import routers
 
 load_dotenv()
@@ -13,7 +16,15 @@ load_dotenv()
 class mainApp(Flask):
     def __init__(self, *args, **options):
         super().__init__(__name__, static_folder="./frontend/static",
-                         template_folder="./frontend/templates", *args, **options)
+                         template_folder="./frontend/templates",
+                         *args, **options)
+        self.db = db()
+
+        # configs
+        self.config["ALLOWED_EXTENSIONS"] = ["jpeg", "gif", "jpg", "png",
+                                             "mov", "mp4", "mpg"]
+        self.config["MAX_CONTENT_LENGTH"] = 1000 * 1024 * 1024  # 1000 MB
+        self.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://localhost:5432/blog_db"
 
         # 移除 {% if %}空白
         self.jinja_env.trim_blocks = True
@@ -52,4 +63,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=os.getenv("port") or 80)
+    app.run(debug=True, port=os.getenv("PORT") or 80)
