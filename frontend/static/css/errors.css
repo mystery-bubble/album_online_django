@@ -1,0 +1,16 @@
+.error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.error-content .errorCode {
+    font-weight: 900;
+    font-size: 5em;
+    color: red;
+}
+.error-content .errorMsg {
+    font-weight: 600;
+    font-size: 1.5em;
+    color: black;
+}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% set cssImports = ["errors"] %}
 {% block content %}
-<div>
+<div class="error-content error-{{ errorCode }}">
   <div class="errorCode">
     {{ errorCode }}
   </div>
