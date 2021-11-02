@@ -14,9 +14,9 @@ class User(db.Model):
     """ 用戶 """
     __tablename__ = "User"
     id: str = db.Column(db.Integer, unique=True, primary_key=True)
-    name: str = db.Column(db.String(30), unique=True)
+    name: str = db.Column(db.String(30), unique=True, nullable=False)
     account: str = db.Column(db.String(30), unique=True)
-    password: str = db.Column(db.String(30))
+    password: str = db.Column(db.String(30), nullable=False)
 
     def __init__(self, id: int, name: str, account: str, password: str):
         self.id = id
@@ -30,7 +30,7 @@ class Photo(db.Model):
     __tablename__ = "Photo"
     id: str = db.Column(db.Integer, unique=True, primary_key=True)
     name: str = db.Column(db.String(30), unique=True)
-    belongs: User = db.Column(db.relationship("", back_populates=""), unique=True, index=True)
+    belongs: User = db.Column(db.relationship("User", back_populates="User"), unique=True, index=True)
     upload_time: str = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     private: bool = db.Column(db.Boolean, default=False)
     description: str = db.Column(db.String(200))
@@ -49,7 +49,7 @@ class Tag(db.Model):
     __tablename__ = "Tag"
     content: str = db.Column(db.String(200))
     color: str = db.Column(db.String(20))
-    attach: Photo = db.relationship("User", )
+    attach: Photo = db.relationship("Photo", back_populates="Photo")
 
     def __init__(self, content: str, color: str, attach: Photo):
         self.content = content
