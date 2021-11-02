@@ -1,8 +1,8 @@
 from flask import Blueprint
 
-api_tem = Blueprint("api", __name__, )
+api_bp = Blueprint("api", __name__, )
 
 
-@api_tem.route("/")
+@api_bp.route("/")
 def index():
     return "喵這是API"

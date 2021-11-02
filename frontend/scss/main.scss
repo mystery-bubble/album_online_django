@@ -29,77 +29,78 @@ body {
     }
 
     hr {
-      border-color: #7d7c7a;margin: 0 1.5rem;
+        border-color: #7d7c7a;
+        margin: 0 1.5rem;
     }
 }
 
 /* header && footer */
 .header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  .left {
-    margin-left: 3rem;
-    margin-right: 3rem;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-  }
-  .right {
-    margin-top: 0.8rem;
-    margin-right: 1.5rem;
-    .btn {
-      padding-top: 5px;
-      padding-bottom: 5px;
-      padding-left: 0.75em;
-      padding-right: 0.75em;
-      font-size: 1.25em;
-      border-radius: 5px;
-      transition: background-color .1s ease-in-out;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #D3D3D3;
-      }
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .left {
+        margin-left: 3rem;
+        margin-right: 3rem;
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
     }
-  }
+    .right {
+        margin-top: 0.8rem;
+        margin-right: 1.5rem;
+        .btn {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 0.75em;
+            padding-right: 0.75em;
+            font-size: 1.25em;
+            border-radius: 5px;
+            transition: background-color 0.1s ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #d3d3d3;
+            }
+        }
+    }
 }
 
 .footer {
-  display: flex;
-  height: 15%;
-  width: 100%;
-  background-color: #242424;
+    display: flex;
+    height: 15%;
+    width: 100%;
+    background-color: #242424;
 }
 
 /* else */
 /*  */
 .list-container {
-  display: grid;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-auto-rows: 10rem;
-  grid-column-gap: 3rem;
-  grid-row-gap: 1.5em;
-  justify-items: center;
-  align-items: center;
-  user-select: none;
+    display: grid;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 10rem;
+    grid-column-gap: 3rem;
+    grid-row-gap: 1.5em;
+    justify-items: center;
+    align-items: center;
+    user-select: none;
 }
 
 .list-container > .item-container {
-  transition: transform .2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
 
-  &:hover {
-    z-index: 1;
-    transform: scale(1.1)
-  }
+    &:hover {
+        z-index: 1;
+        transform: scale(1.1);
+    }
 
-  img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-    border: 1px solid white
-  }
+    img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        border: 1px solid white;
+    }
 }

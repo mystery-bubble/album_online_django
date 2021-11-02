@@ -73,13 +73,13 @@ body {
   padding-right: 0.75em;
   font-size: 1.25em;
   border-radius: 5px;
-  -webkit-transition: background-color .1s ease-in-out;
-  transition: background-color .1s ease-in-out;
+  -webkit-transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
   cursor: pointer;
 }
 
 .header .right .btn:hover {
-  background-color: #D3D3D3;
+  background-color: #d3d3d3;
 }
 
 .footer {
@@ -116,10 +116,10 @@ body {
 }
 
 .list-container > .item-container {
-  -webkit-transition: -webkit-transform .2s ease-in-out;
-  transition: -webkit-transform .2s ease-in-out;
-  transition: transform .2s ease-in-out;
-  transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
 
 .list-container > .item-container:hover {

@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 import os
 from flask.templating import render_template
 
-from backend.db import db
-from backend.router import routers
+from backend.extensions import db
+from backend.blueprints import routers
 
 load_dotenv()
 
@@ -16,13 +16,15 @@ class mainApp(Flask):
         super().__init__(__name__, static_folder="./frontend/static",
                          template_folder="./frontend/templates",
                          *args, **options)
-        # self.db = db()
+
+        self.db = db.init_app(app)
 
         # configs
         self.config["ALLOWED_EXTENSIONS"] = ["jpeg", "gif", "jpg", "png",
                                              "mov", "mp4", "mpg"]
         self.config["MAX_CONTENT_LENGTH"] = 1000 * 1024 * 1024  # 1000 MB
-        self.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://localhost:5432/blog_db"
+        self.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+        self.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQL_URL")
 
         # 移除 {% if %}空白
         self.jinja_env.trim_blocks = True
@@ -59,8 +61,9 @@ def index():
         "uptime": "",
     }])
 
+
 @app.route("/photo/<id>")
-def photo( id ):
+def photo(id):
     return render_template(None)
 
 
