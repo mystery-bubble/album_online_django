@@ -59,6 +59,10 @@ def index():
         "uptime": "",
     }])
 
+@app.route("/photo/<id>")
+def photo( id ):
+    return render_template(None)
+
 
 if __name__ == "__main__":
-    app.run(debug=True, port=os.getenv("PORT") or 80)
+    app.run(debug=True, port=os.getenv("PORT") or 8080)

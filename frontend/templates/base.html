@@ -26,9 +26,11 @@
             <img class="header-title-img" src="{{ url_for('static', filename='assets/image/header_title.png') }}" />
             <span style="top: 50px">ONLINE</span>
           </div>
-          <div class="right"></div>
+          <div class="right">
+            <div class="btn">UPLOAD</div>
+          </div>
         </div>
-        <hr style="border-color: #7d7c7a;margin: 0 1.5rem;" />
+        <hr />
         {% block content %}{% endblock %}
       </div>
     </div>

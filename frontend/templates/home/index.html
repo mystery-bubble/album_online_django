@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="list-container">
-  {% for img in imgLinks %}
+  {% for img in range(48) %}
   <div class="item-container">
-    <img src="{{ img.url }}" alt="{{ img.alt }}">
-    <p>{{ img.uptime }}</p>
+    <!-- <img src="{{ img.url }}" alt="{{ img.alt }}">
+    <p>{{ img.uptime }}</p> -->
+    <img src="{{ url_for('static', filename='assets/image/header_title.png') }}">
   </div>
   {% endfor %}
 </div>
