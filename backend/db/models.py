@@ -1,5 +1,5 @@
 import datetime
-from ..extensions import db
+from . import db
 
 """
 primary_key = True (設定為主鍵)
@@ -14,9 +14,9 @@ class User(db.Model):
     """ 用戶 """
     __tablename__ = "User"
     id: str = db.Column(db.Integer, unique=True, primary_key=True)
-    name: str = db.Column(db.String(30), unique=True, nullable=False)
-    account: str = db.Column(db.String(30), unique=True)
-    password: str = db.Column(db.String(30), nullable=False)
+    name: str = db.Column(db.String(30), nullable=False)
+    account: str = db.Column(db.String(30), unique=True, nullable=False, index=True)
+    password: str = db.Column(db.String(64), nullable=False)
 
     def __init__(self, id: int, name: str, account: str, password: str):
         self.id = id
@@ -29,11 +29,12 @@ class Photo(db.Model):
     """ 圖片 """
     __tablename__ = "Photo"
     id: str = db.Column(db.Integer, unique=True, primary_key=True)
-    name: str = db.Column(db.String(30), unique=True)
-    belongs: User = db.Column(db.relationship("User", back_populates="User"), unique=True, index=True)
+    upload_id: str = db.Column( db.String(100), unique=True )
+    name: str = db.Column(db.String(30))
+    belongs: User = db.Column(db.relationship("User", back_populates="User"), index=True)
     upload_time: str = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     private: bool = db.Column(db.Boolean, default=False)
-    description: str = db.Column(db.String(200))
+    description: str = db.Column(db.String(1000))
 
     def __init__(self, id: int, name: str, belongs: User, upload_time: str, private: bool, description: str):
         self.id = id
@@ -42,12 +43,13 @@ class Photo(db.Model):
         self.upload_time = upload_time
         self.private = private
         self.description = description
-
+    
 
 class Tag(db.Model):
     """ 標籤 """
     __tablename__ = "Tag"
-    content: str = db.Column(db.String(200))
+    id: str = db.Column(db.Integer, unique=True, primary_key=True)
+    content: str = db.Column(db.String(50))
     color: str = db.Column(db.String(20))
     attach: Photo = db.relationship("Photo", back_populates="Photo")
 
