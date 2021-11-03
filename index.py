@@ -5,10 +5,11 @@ from dotenv import load_dotenv
 import os
 from flask.templating import render_template
 
-from backend.extensions import db
+from backend.db import db
 from backend.blueprints import routers
 
 load_dotenv()
+basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 
 class mainApp(Flask):
@@ -17,7 +18,7 @@ class mainApp(Flask):
                          template_folder="./frontend/templates",
                          *args, **options)
 
-        self.db = db.init_app(app)
+        self.db = db.init_app(self)
 
         # configs
         self.config["ALLOWED_EXTENSIONS"] = ["jpeg", "gif", "jpg", "png",
@@ -25,6 +26,7 @@ class mainApp(Flask):
         self.config["MAX_CONTENT_LENGTH"] = 1000 * 1024 * 1024  # 1000 MB
         self.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
         self.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQL_URL")
+        self.config["UPLOAD_PATH"] = os.path.join(basedir, 'uploads')
 
         # 移除 {% if %}空白
         self.jinja_env.trim_blocks = True

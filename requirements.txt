@@ -2,3 +2,5 @@ flask
 python-dotenv
 Werkzeug
 psycopg2
+PyJWT
+uuid
