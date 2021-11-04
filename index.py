@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask
-from dotenv import load_dotenv
 import os
+
+from dotenv import load_dotenv
+from flask import Flask
 from flask.templating import render_template
 
-from backend.db import db
 from backend.blueprints import routers
+from backend.db import db
 
 load_dotenv()
 basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
@@ -73,11 +74,6 @@ def index():
         "alt": "",
         "uptime": "",
     }])
-
-
-@app.route("/photo/<id>")
-def photo(id):
-    return render_template(None)
 
 
 if __name__ == "__main__":
