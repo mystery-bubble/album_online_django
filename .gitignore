@@ -1,6 +1,7 @@
 .env
 __pycache__/
 *.css.map
+env/
 
 uploads/avatars/*
 uploads/img/*

@@ -6,3 +6,4 @@ PyJWT
 uuid
 Flask-WTF
 Flask-Cors
+Flask-SQLAlchemy
