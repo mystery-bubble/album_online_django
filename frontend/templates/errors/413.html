@@ -1,0 +1,6 @@
+{% extends 'errors/baseError.html' %}
+{% set errorCode = 413 %}
+{% block errorMsg %}
+<p>請求資料過大!!!</p>
+<p>Payload Too Large</p>
+{% endblock errorMsg %}

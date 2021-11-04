@@ -38,12 +38,23 @@ class mainApp(Flask):
         # errors
         @self.errorhandler(400)
         def error_400(error):
+            """400錯誤處理"""
             return render_template("errors/400.html")
+
+        @self.errorhandler(403)
+        def error_403(error):
+            """403錯誤處理"""
+            return render_template("errors/403.html")
 
         @self.errorhandler(404)
         def error_404(error):
             """404錯誤處理"""
             return render_template("errors/404.html")
+
+        @self.errorhandler(413)
+        def error_413(error):
+            """413錯誤處理"""
+            return render_template("errors/413.html")
 
         @self.errorhandler(500)
         def error_500(error):
