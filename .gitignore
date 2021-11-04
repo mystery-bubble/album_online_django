@@ -1,3 +1,10 @@
 .env
 __pycache__/
 *.css.map
+
+uploads/avatars/*
+uploads/img/*
+!uploads/avatars
+!uploads/avatars/.gitkeep
+!uploads/img
+!uploads/img/.gitkeep
