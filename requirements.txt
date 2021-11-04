@@ -4,3 +4,5 @@ Werkzeug
 psycopg2
 PyJWT
 uuid
+Flask-WTF
+Flask-Cors

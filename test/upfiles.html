@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="image_shows"></div>
+    <form action="http://127.0.0.1:5080/upload" method=post enctype=multipart/form-data>
+        <input type=file name=file>
+        <input type=submit>
+    </form>
+    <div id="test" style="height: 100px; width: 100px; background-color: red"></div>
+    <script>
+        addEventListener("load", () => {
+            FileList.prototype.toArray = function () {
+                return Array.from(this).map((file) => file);
+            };
+            let file_uploader = document.getElementById("test");
+            file_uploader.addEventListener("dragover", (event) => {
+                event.stopPropagation();
+                event.preventDefault();
+                event.dataTransfer.dropEffect = "copy";
+            });
+            file_uploader.addEventListener("drop", (event) => {
+                event.stopPropagation();
+                event.preventDefault();
+                let files = event.dataTransfer.files.toArray();
+                let form = new FormData();
+                files.map((file) => {
+                    if (file.type &&= ["image/png".includes(file.type)]) {
+                        let load_file = new FileReader();
+                        load_file.readAsDataURL(file);
+                        load_file.addEventListener("load", (event) => {
+                            let img = document.createElement("img");
+                            form.append("files[]", file, file.name);
+                            img.src = event.target.result;
+                            img.alt = file.name;
+                            document.getElementById("image_shows").append(img);
+                        });
+                    } else {
+                        console.log("type error", file);
+                    }
+                });
+                console.log(form.keys());
+                fetch("http://127.0.0.1:5080/uploads", { method: "POST", body: form })
+
+            });
+        });
+    </script>
+</body>
+
+</html>

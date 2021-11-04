@@ -5,12 +5,13 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 from flask.templating import render_template
+from flask_cors import CORS
 
 from backend.blueprints import routers
 from backend.db import db
+from backend.settings import config
 
 load_dotenv()
-basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 
 class mainApp(Flask):
@@ -19,15 +20,14 @@ class mainApp(Flask):
                          template_folder="./frontend/templates",
                          *args, **options)
 
-        self.db = db.init_app(self)
+        self.cors = CORS(self, resources={
+            "/*": {
+                "origins": "*"
+            }
+        })
 
-        # configs
-        self.config["ALLOWED_EXTENSIONS"] = ["jpeg", "gif", "jpg", "png",
-                                             "mov", "mp4", "mpg"]
-        self.config["MAX_CONTENT_LENGTH"] = 1000 * 1024 * 1024  # 1000 MB
-        self.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-        self.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQL_URL")
-        self.config["UPLOAD_PATH"] = os.path.join(basedir, 'uploads')
+        self.db = db.init_app(self)
+        self.config.from_object(config["BaseConfig"])
 
         # 移除 {% if %}空白
         self.jinja_env.trim_blocks = True
@@ -69,7 +69,7 @@ app = mainApp()
 @app.route("/")
 def index():
     # random get 6*8 photos using api
-    return render_template("home/index.html", title="Hello World !", imgLinks=[{
+    return render_template("main/index.html", title="Hello World !", imgLinks=[{
         "user": "",
         "alt": "",
         "uptime": "",

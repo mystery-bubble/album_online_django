@@ -9,11 +9,23 @@ main_bp = Blueprint("main", __name__, )
 
 @main_bp.route("/upload", methods=["GET", "POST"])
 def upload():
+    print(request.files)
     if request.method == "POST" and "file" in request.files:
         file = request.files.get("file")
         filename = rename_image(file.filename)
-        file.save(os.path.join(current_app.config["UPLOAD_PATH"], filename))
-    return render_template("")
+        file.save(os.path.join(f"{current_app.config['UPLOAD_PATH']}/img", filename))
+    return "awa"
+
+
+@main_bp.route("/uploads", methods=["GET", "POST"])
+def uploads():
+    print(request.files)
+    if request.method == "POST" and "files[]" in request.files:
+        file = request.files.get("files[]")
+        filename = rename_image(file.filename)
+        file.save(os.path.join(f"{current_app.config['UPLOAD_PATH']}/img", filename))
+    # return
+    return "awa"
 
 
 @main_bp.route("/photo/<path:id>")
